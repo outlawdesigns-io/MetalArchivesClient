@@ -31,13 +31,13 @@ class MetalArchivesClient{
  }
  public function searchArtist($artist,$id = null){
    $artist = preg_replace(self::SPACEPATT,self::SPACEREPL,$artist);
-   $uri = self::ARTISTEND . (is_null($id) ? $artist:$artist . '/' . $id);
+   $uri = self::ARTISTEND . (is_null($id) ? $artist:$artist . '' . $id);
    return $this->_apiGet($uri);
  }
  public function searchAlbum($album,$artist = null,$albumId = null){
    $album = preg_replace(self::SPACEPATT,self::SPACEREPL,$album);
    $artist = preg_replace(self::SPACEPATT,self::SPACEREPL,$artist);
-   $uri = self::ALBUMEND . (is_null($artist) ? $album:$album . '/' . $artist) . (is_null($albumId) ? '/':$albumId);
+   $uri = self::ALBUMEND . (is_null($artist) ? $album:$album . '' . $artist) . (is_null($albumId) ? '/':$albumId);
    return $this->_apiGet($uri);
  }
  public function searchLabel($label){
@@ -56,7 +56,7 @@ class MetalArchivesClient{
    return $this->_apiGet(self::RECOMEND . $artistId);
  }
  public function getRoster($labelId,$past = null){
-   $uri = self::ROSTEREND . $labelId . (is_null($past) ? '/':'true');
+   $uri = self::ROSTEREND . $labelId . (is_null($past) ? '':'true');
    return $this->_apiGet($uri);
  }
 }
